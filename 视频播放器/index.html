@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>视频播放器</title>
+    <style>
+        .video_bo{
+            width: 700px;
+            height: 500px;
+            background-color: black;
+        }
+        input{
+            margin-right: 29px;
+        }
+    </style>
+</head>
+<body>
+    <video src="map4video.mp4"  class="video_bo" controls></video>
+    <div>
+        <input type="button" value="播放/暂停" class="bofang"/>
+        <input type="button" value="快退" class="tui"/>
+        <input type="button" value="快进*1" class="kuai"/>
+        <input type="button" value="静音" class="jingying"/>
+        <input type="button" value="-" id="jian"/> <progress value="0" max="100" class="vioce"></progress><input type="button" value="+" id="add"/>
+        <input  style="margin-left: 18px" type="button" value="全屏" class="btn_big"/>
+    </div>
+    <script>
+        var play = false;
+        var timer;
+        window.onload =function(){
+            var video =document.getElementsByClassName("video_bo")[0];
+            var btn_b =document.getElementsByClassName("bofang")[0];
+            var btn_t =document.getElementsByClassName("tui")[0];
+            var btn_k =document.getElementsByClassName("kuai")[0];
+            var btn_j = document.getElementsByClassName("jingying")[0];
+            var jian =document.getElementById("jian");
+            var add =document.getElementById("add");
+            var vioce =document.getElementsByClassName("vioce")[0];
+            var btn_big =document.getElementsByClassName("btn_big")[0];
+
+
+            btn_b.onclick =function(){
+                if(play ==false){
+                    video.play();
+                    play = true;
+                }
+                else{
+                    video.pause();
+                    play =false;
+                }
+            };
+            //快进功能
+            btn_k.onclick = function(){
+                var speed = video.playbackRate;
+                speed++;
+                if(speed>=4){
+                    speed =1;
+                }
+                video.playbackRate =speed;
+                this.value ="快进*"+speed;
+            };
+            var speed =1;
+            btn_t.onclick =function(){
+                speed++;
+                clearInterval(timer);
+                this.value ="快退*"+speed;
+                if(speed>=4){
+                    speed =0;
+                    this.value ="快退";
+                    video.play();
+                    return;
+                }
+                video.pause();
+                var time =video.currentTime;
+                timer =setInterval(function(){
+                    time-=speed;
+                    video.currentTime = time;
+                },1000);
+            };
+            var i;
+            btn_j.onclick =function(){
+                if(i==false){
+                    video.muted =false;
+                    i=true;
+                }
+                else{
+                    video.muted =true;
+                    i =false;
+                }
+            };
+            jian.onclick =function(){
+                var num =video.volume*100;
+                num-=10;
+                vioce.value =num;
+                video.volume =num/100;
+            };
+            add.onclick =function(){
+                var num =video.volume*100;
+                num+=10;
+                vioce.value =num;
+                video.volume =num/100;
+            };
+            btn_big.onclick = function () {
+                /*需要考虑浏览器的兼容*/
+                /*w3c*/
+                if (video.RequestFullscreen) {
+                    /*标准的*/
+                    video.RequestFullscreen();
+                }
+                else if (video.mozRequestFullScreen) {
+                    /*火狐的*/
+                    video.mozRequestFullScreen();
+                }
+                else if (video.webkitRequestFullscreen) {
+                    /* 谷歌*/
+                    video.webkitRequestFullscreen();
+                }
+                else if (video.msRequestFullscreen) {
+                    /*IE11*/
+                    video.msRequestFullscreen();
+                }
+            };
+        }
+    </script>
+</body>
+</html>

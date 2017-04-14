@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        tr {
+            background-color: silver;
+        }
+        td {
+            width: 19%;
+            height: 35px;
+            line-height: 35px;
+            border: 1px solid deeppink;
+            text-align: center;
+            font-size: 22px;
+        }
+
+        .num {
+            width: 50px;
+            border-style: none;
+            outline: none;
+            background-color: silver;
+            height: 20px;
+            text-align: center;
+        }
+
+        .btn_del, #btn_all, #check_fan, #btn_delall, .text, #all_price {
+            border-style: none;
+            color: red;
+            background-color: silver;
+            outline: none;
+            text-align: center;
+        }
+
+        .btn_sub, .btn_add {
+            width: 20px;
+        }
+
+        .btn_del {
+            width: 50px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <tr>
+        <td><input type="button" id="btn_all" value="全选"/></td>
+        <td>种类</td>
+        <td>单价</td>
+        <td>数量</td>
+        <td>小计</td>
+        <td><input type="button" id="btn_delall" value="全部删除"/></td>
+    </tr>
+    <tr class="check_tr">
+        <td><input class="check_list" type="checkbox"/></td>
+        <td>苹果</td>
+        <td class="num_price">5000￥</td>
+        <td><input type="button" class="btn_add" value="+"/>
+            <input class="num" type="text" value="0"/>
+            <input type="button" class="btn_sub" value="-"/></td>
+        <td><input class="text" type="text"/></td>
+        <td><input type="button" class="btn_del" value="删除"/></td>
+    </tr>
+    <tr class="check_tr">
+        <td><input class="check_list" type="checkbox"/></td>
+        <td>三星</td>
+        <td class="num_price">4000￥</td>
+        <td><input type="button" class="btn_add" value="+"/>
+            <input class="num" type="text" value="0"/>
+            <input type="button" class="btn_sub" value="-"/></td>
+        <td><input class="text" type="text"/></td>
+        <td><input type="button" class="btn_del" value="删除"/></td>
+    </tr>
+    <tr class="check_tr">
+        <td><input class="check_list" type="checkbox"/></td>
+        <td>华为</td>
+        <td class="num_price">4500￥</td>
+        <td><input type="button" class="btn_add" value="+"/>
+            <input class="num" type="text" value="0"/>
+            <input type="button" class="btn_sub" value="-"/></td>
+        <td><input class="text" type="text"/></td>
+        <td><input type="button" class="btn_del" value="删除"/></td>
+    </tr>
+    <tr class="check_tr">
+        <td><input class="check_list" type="checkbox"/></td>
+        <td>小米</td>
+        <td class="num_price">2000￥</td>
+        <td><input type="button" class="btn_add" value="+"/>
+            <input class="num" type="text" value="0"/>
+            <input type="button" class="btn_sub" value="-"/></td>
+        <td><input class="text" type="text"/></td>
+        <td><input type="button" class="btn_del" value="删除"/></td>
+    </tr>
+    <tr>
+        <td><input type="button" id="check_fan" value="反选"/></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><input type="text" id="all_price" value="0"/></td>
+        <td></td>
+    </tr>
+</table>
+<script>
+    window.onload = function () {
+        //全选按钮
+        var all_check = document.getElementById("btn_all");
+        /*四个复选框*/
+        var check_list = document.getElementsByClassName("check_list");
+        /*反选按钮*/
+        var check_fan = document.getElementById("check_fan");
+        /*获取行对象*/
+        var check_tr = document.getElementsByClassName("check_tr");
+       /* 加数量按钮*/
+        var btn_add = document.getElementsByClassName("btn_add");
+        /*减数量按钮*/
+        var btn_sub = document.getElementsByClassName("btn_sub");
+        /*数量对象*/
+        var number = document.getElementsByClassName("num");
+      /*  小计*/
+        var text = document.getElementsByClassName("text");
+        /*单价*/
+        var price = document.getElementsByClassName("num_price");
+        /*总价*/
+        var all_price = document.getElementById("all_price");
+        /*删除按钮*/
+        var btn_del = document.getElementsByClassName("btn_del");
+        /*选择删除*/
+        var btn_delall = document.getElementById("btn_delall");
+
+        /*全选事件*/
+        showindex();
+        all_check.onclick = function () {
+            for (var i = 0; i < check_list.length; i++) {
+                check_list[i].checked = true;
+                check_tr[i].style.backgroundColor = "white";
+            }
+        };
+        /*反选事件*/
+        check_fan.onclick = function () {
+            for (var i = 0; i < check_list.length; i++) {
+                check_list[i].checked = !check_list[i].checked;
+                check_tr[i].style.backgroundColor = "silver";
+            }
+        };
+        /*选择复选框*/
+        for (var i = 0; i < check_list.length; i++) {
+            check_list[i].index = i;
+            check_list[i].onclick = function () {
+                if (check_list[this.index].checked == true) {
+                    check_tr[this.index].style.backgroundColor = "white";
+                }
+                else {
+                    check_tr[this.index].style.backgroundColor = "silver";
+                }
+            }
+        }
+        //*/加数量然后小计*/
+        for (var i = 0; i < btn_add.length; i++) {
+            btn_add[i].index = i;
+            btn_add[i].onclick = function () {
+                totle_num = 0;
+                var num = number[this.index].value;
+                num++;
+                number[this.index].value = num;
+                text[this.index].value = parseInt(price[this.index].innerHTML) * number[this.index].value;
+                calculate_sum();
+            }
+        }
+        /*减数量然后小计*/
+        for (var i = 0; i < btn_sub.length; i++) {
+            btn_sub[i].index = i;
+            btn_sub[i].onclick = function () {
+                totle_num = 0;
+                var num = number[this.index].value;
+                num--;
+                if (num < 0) {
+                    num = 0;
+                }
+                number[this.index].value = num;
+                text[this.index].value = parseInt(price[this.index].innerHTML) * number[this.index].value;
+                calculate_sum();
+            }
+        }
+        /*让小计和总价默认为0*/
+        for (var i = 0; i < text.length; i++) {
+            text[i].value =0;
+            all_price.value =0;
+            number[i].value = 0;
+        }
+        //删除购物
+        for (var i = 0; i < btn_del.length; i++) {
+            btn_del[i].index = i;
+            btn_del[i].onclick = function () {
+                check_tr[this.index].remove();
+                showindex();
+                calculate_sum();
+            };
+        }
+        //选择删除
+        btn_delall.onclick = function () {
+            for (var x = 0; x < check_list.length; x++) {
+//                check_list[x].index = x;
+                if (check_list[x].checked == true) {
+                    check_tr[x].remove();
+                    x--;
+                }
+            }
+            showindex();
+            calculate_sum();
+        };
+        /*更新索引值*/
+        function showindex() {
+            for (var j = 0; j < check_tr.length; j++) {
+                check_list[j].index = j;
+                btn_del[j].index = j;
+                btn_add[j].index = j;
+                btn_sub[j].index = j;
+            }
+        }
+        //计算总价
+        function calculate_sum() {
+            var totle_num = 0;
+            for (var a = 0; a < btn_add.length; a++) {
+                totle_num += parseInt(text[a].value);
+                all_price.value = totle_num;
+            }
+        }
+    }
+</script>
+</body>
+</html>

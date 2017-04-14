@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>放大镜</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .div_bg {
+            width: 240px;
+            height: 320px;
+            border: 1px solid silver;
+            position: relative;
+            float: left;
+        }
+        #image{
+            position: absolute;
+        }
+        .size{
+            width: 60px;
+            height: 80px;
+            border: 2px solid #838383;
+            background-color: rgba(192, 192, 192, 0.34);
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 2;
+            cursor: pointer;
+        }
+        .div_last{
+            width: 240px;
+            height: 320px;
+            overflow: hidden;
+            float: left;
+            position: relative;
+            border: 1px solid orangered;
+            display: none;
+        }
+        #big_image{
+            position: absolute;
+        }
+        .reminder{
+            clear: left;
+            margin-left: 20px;
+            color: deeppink;
+        }
+    </style>
+</head>
+<body >
+<div class="div_bg">
+    <img id="image" src="image/smallimage.jpg" alt="pic"/>
+
+</div>
+<div class="div_last">
+    <img id="big_image" src="image/bigimage00.jpg" alt="pic_1"/>
+</div>
+<p class="reminder">请点击图片进行放大</p>
+<script>
+window.onload = function(){
+    var x,y;
+    var xx,yy;
+    var n = true;
+    var flag = false;
+    var divBg = document.getElementsByClassName("div_bg")[0];
+    var image = document.getElementById("image");
+    var frame = document.createElement("div");
+    var bigImage = document.getElementById("big_image");
+    var divLast = document.getElementsByClassName("div_last")[0];
+    var bodyes = document.getElementsByTagName("body")[0];
+
+    divBg.onmouseover = function(){
+        divBg.onmousedown = imgSelect;
+        divBg.onmousemove = imgMove;
+    };
+
+
+    bodyes.onmouseup = imgOut;
+/*    divBg.onmouseout = function(){
+        flag = false;
+        divBg.removeChild(divBg.childNodes[2]);
+        divLast.style.display = "none";
+    };*/
+
+
+    /*鼠标按下事件*/
+    function imgSelect(event){
+        var event=event || window.event;
+            x = event.clientX-30;
+            y = event.clientY-40;
+            frame.className = "size";
+            divBg.appendChild(frame);
+            /*鼠标点击的坐标可以给小方块初始位置*/
+            frame.style.top =y+"px";
+            frame.style.left =x+"px";
+            flag = true;
+            xx = event.clientX-frame.offsetLeft;//鼠标在透明层的相对横坐标=鼠标坐标-方块左边距
+            yy = event.clientY-frame.offsetTop;//鼠标在透明层的相对纵坐标=鼠标坐标-方块上边距
+            divLast.style.display ="block";
+    }
+    /*鼠标移动事件*/
+    function imgMove(event){
+        var event=event || window.event;//浏览器兼容性
+        if(flag == true){
+            //鼠标移动
+            frame.style.left =event.clientX-xx+"px";
+            frame.style.top =event.clientY-yy+"px";
+            //图片移动
+            bigImage.style.left = -2.8*parseInt(frame.style.left)+"px";
+            bigImage.style.top = -2.8*parseInt(frame.style.top)+"px";
+            //限制鼠标移动边界
+            //左
+            if((parseInt(frame.style.left))<0){
+                frame.style.left = 0+"px";
+            }
+            //上
+            if((parseInt(frame.style.top))<0){
+                frame.style.top = 0+"px";
+            }
+            //右
+            if(parseInt(frame.style.left)>179){
+                frame.style.left =179+"px";
+            }
+            //下
+            if(parseInt(frame.style.top)>239){
+                frame.style.top =239+"px";
+            }
+
+            //限制图片移动边界
+            if(parseInt(bigImage.style.left)>0){
+                bigImage.style.left = 0+"px";
+            }
+            if(parseInt(bigImage.style.top)>0){
+                bigImage.style.top = 0 +"px";
+            }
+            if(parseInt(bigImage.style.left)<-2.8*179){
+                bigImage.style.left = -2.8*179+"px";
+            }
+            if(parseInt(bigImage.style.top)<-2.8*239){
+                bigImage.style.top = -2.8*239+"px"
+            }
+        }
+    }
+    /*鼠标弹起事件*/
+    function imgOut() {
+        flag = false;
+        /*删除创建的元素节点*/
+        divBg.removeChild(divBg.childNodes[2]);
+        divLast.style.display = "none";
+    }
+}
+</script>
+</body>
+</html>

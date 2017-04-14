@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>math对象的使用</title>
+    <style>
+        .div_1{
+            width: 80px;
+            height: 30px;
+            line-height: 30px;
+            background-color: silver;
+        }
+        .div_random{
+            width: 10px;
+            float: left;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .span_text{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="div_1">
+
+</div>
+<span class="span_text">看不清</span>
+<div>
+    <input  id="txt" type="text"/>
+    <input id="btn" type="button" value="登录"/>
+</div>
+<script>
+    var number = document.getElementsByClassName("div_1")[0];
+    var span_text = document.getElementsByClassName("span_text")[0];
+    var text_num = "";
+    showNumber();
+    function showNumber(){
+        text_num = "";
+        number.innerHTML = "";
+        for(var i = 0;i<6;i++){
+            var div_element = document.createElement("div");
+            div_element.className ="div_random";
+            var color_num = "";
+            for(var j = 0;j<6;j++){
+                 color_num+=Math.floor(Math.random()*10);
+            }
+            var div_color = "#"+color_num;
+            div_element.style.color = div_color;
+            var text = Math.floor(Math.random()*10);
+            text_num+=text;
+            div_element.innerHTML = text;
+            number.appendChild(div_element);
+        }
+    }
+    var btn = document.getElementById("btn");
+    btn.onclick = function(){
+        var txt = document.getElementById("txt");
+        if(txt.value != text_num ){
+            alert("邮箱格式不正确！");
+        }
+        else{
+            alert("恭喜你，注册成功！");
+        }
+    };
+    span_text.onclick = function(){
+        showNumber();
+    }
+
+
+
+</script>
+</body>
+</html>

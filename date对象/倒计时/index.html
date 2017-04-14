@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>倒计时</title>
+    <style>
+        .div_time {
+            float: left;
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            font-size: 25px;
+            font-weight: bold;
+            background-color: silver;
+            margin-left: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="div_time"></div>
+<div class="div_time"></div>
+<div class="div_time"></div>
+<div class="div_time"></div>
+<div class="div_time"></div>
+<div class="div_time"></div>
+<script>
+    div_time = document.getElementsByClassName("div_time");
+    window.onload = function () {
+        setInterval(function () {
+            var time = new Date(2017, 2, 12, 12, 0, 0);
+            var now_time = new Date();
+            var time_res = (time.getTime() - now_time.getTime()) / 1000;//转换为秒
+
+            var years = parseInt(time_res / (3600 * 24 * 30 * 12));
+            var month = parseInt(time_res / (3600 * 24 * 30) % 12);
+            var day = parseInt(time_res / (3600 * 24) % 30);
+            var hours = parseInt(time_res / 3600 % 24);
+            var minutes = parseInt(time_res / 60 % 60);
+            var sec = parseInt(time_res % 60);
+            div_time[0].innerHTML = years + "年";
+            div_time[1].innerHTML = month + "月";
+            div_time[2].innerHTML = day + "日";
+            div_time[3].innerHTML = hours + "时";
+            div_time[4].innerHTML = minutes + "分";
+            div_time[5].innerHTML = sec + "秒";
+        }, 1)
+    }
+</script>
+</body>
+</html>

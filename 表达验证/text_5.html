@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>返回值函数的使用</title>
+</head>
+<body>
+<input type="text" id="text1"/>
+<input type="text" id="text2"/>
+<input type="button" value="比较大小" onclick="zhi()"/>
+<input type="text" id="text3"/>
+</body>
+<script>
+    var a =document.getElementById("text1");
+    var b =document.getElementById("text2");
+    var c =document.getElementById("text3");
+    function zhi(){
+        c.value =compare();
+    }
+    function compare(){
+
+
+
+//        var c =document.getElementById("text3");
+        if(a.value> b.value){
+            return a.value;
+        }
+        else{
+            return b.value;
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>表单验证</title>
+    <style>
+        .li_list {
+            list-style: none;
+            width: 150px;
+            line-height: 20px;
+        }
+        .reminder {
+            background-color: orangered;
+            width: 173px;
+            height: 20px;
+            margin-left: 200px;
+            margin-top: -20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<form action="text_5.html">
+    <ul>
+        <li class="li_list">姓名:<input id="name" type="text"/>
+
+            <div class="reminder">输入不能为空</div>
+        </li>
+        <li class="li_list">密码:<input id="password" type="text"/>
+
+            <div class="reminder">输入不能为空</div>
+        </li>
+        <li class="li_list">确认密码:<input id="passwords" type="text"/>
+
+            <div class="reminder">输入不能为空</div>
+        </li>
+        <li class="li_list">电话:<input id="phone" type="text"/>
+
+            <div class="reminder">输入不能为空</div>
+        </li>
+        <li class="li_list"><input type="submit" id="btn" value="注册"/></li>
+    </ul>
+</form>
+<script>
+    var res = [];
+    window.onload = function () {
+        var name = document.getElementById("name");
+        var reminder = document.getElementsByClassName("reminder");
+        var password = document.getElementById("password");
+        var passwords = document.getElementById("passwords");
+        var phone = document.getElementById("phone");
+        name.onfocus = function () {
+            reminder[0].style.display = "none";
+        };
+        name.onblur = function () {
+            if (this.value == "") {
+                reminder[0].style.display = "block";
+//                reminder[0].style.color = "red";
+                reminder[0].style.backgroundColor = "orangered";
+                res[0] = false;
+            }
+            else {
+                res[0] = true;
+                reminder[0].style.display = "block";
+                reminder[0].style.color = "green";
+                reminder[0].style.backgroundColor = "white";
+                reminder[0].innerHTML = "正确";
+
+            }
+        };
+        password.onfocus = function () {
+            reminder[1].style.display = "none";
+        };
+        password.onblur = function () {
+            if (this.value == "") {
+                reminder[1].style.display = "block";
+                reminder[1].style.backgroundColor = "orangered";
+                res[1] = false;
+            }
+            else {
+                res[1] = true;
+                reminder[1].style.display = "block";
+                reminder[1].style.color = "green";
+                reminder[1].style.backgroundColor = "white";
+                reminder[1].innerHTML = "正确";
+            }
+        };
+        passwords.onfocus = function () {
+            reminder[2].style.display = "none";
+        };
+        passwords.onblur = function () {
+            if (this.value == "") {
+                reminder[2].style.display = "block";
+                reminder[2].style.backgroundColor = "orangered";
+                reminder[2].innerHTML = "输入不能为空";
+                res[2] = false;
+            }
+            else {
+                if (password.value != passwords.value) {
+                    reminder[2].style.display = "block";
+                    reminder[2].style.backgroundColor = "orangered";
+                    reminder[2].innerHTML = "输入密码不一致！";
+                    res[2] = false;
+                }
+                else {
+                    res[2] = true;
+                    reminder[2].style.display = "block";
+                    reminder[2].style.backgroundColor = "white";
+                    reminder[2].style.color = "green";
+                    reminder[2].innerHTML = "正确";
+                }
+            }
+        };
+        phone.onfocus = function () {
+            reminder[3].style.display = "none";
+        };
+        phone.onblur = function () {
+            if (this.value == "") {
+                reminder[3].style.display = "block";
+                reminder[3].style.backgroundColor = "orangered";
+                reminder[3].innerHTML = "输入不能为空";
+                res[3] = false;
+            }
+            else {
+                if (isNaN(this.value)) {
+                    reminder[3].style.display = "block";
+                    reminder[3].style.backgroundColor = "orangered";
+                    reminder[3].innerHTML = "输入格式不正确！";
+                    res[3] = false;
+                }
+                else {
+                    if (this.value.length != 11) {
+                        reminder[3].style.display = "block";
+                        reminder[3].style.backgroundColor = "orangered";
+                        reminder[3].innerHTML = "输入格式不正确！";
+                        res[3] = false;
+                    }
+                    else {
+                        res[3] = true;
+                        reminder[3].style.display = "block";
+                        reminder[3].style.backgroundColor = "white";
+                        reminder[3].style.color = "green";
+                        reminder[3].innerHTML = "正确";
+                    }
+                }
+            }
+        };
+        var btn = document.getElementById("btn");
+        //表单提交
+        btn.onclick = function () {
+            var x = res[0] && res[1] && res[2] && res[3];
+            if (x) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+    }
+</script>
+</body>
+</html>

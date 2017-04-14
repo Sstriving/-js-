@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .li_list {
+            width: 500px;
+            height: 300px;
+            list-style: none;
+            float: left;
+        }
+
+        .li_list img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .ul_list {
+            width: 2000px;
+            height: 300px;
+            margin: 0;
+            padding: 0;
+            transition: all 0.5s;
+        }
+
+        .div_list {
+            width: 500px;
+            height: 300px;
+            border: 1px solid red;
+            overflow: hidden;
+        }
+
+        .div_txt {
+            position: absolute;
+            font-size: 4em;
+            z-index: 99999999999;
+            padding-top: 110px;
+            width: 500px;
+        }
+
+        .div_txt span:hover {
+            /*变小手*/
+            cursor: pointer;
+            background-color: rgba(192, 192, 192, 0.29);
+        }
+
+        .div_btn {
+            width: 60px;
+            height: 10px;
+            border-radius: 10px;
+            background-color: silver;
+            float: left;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="div_list">
+    <div class="div_txt">
+        <span title="0" class="span_txt"><</span>
+        <span title="1" class="span_txt" style=" float: right;">></span>
+    </div>
+    <ul class="ul_list">
+        <li class="li_list"><img src="p1.jpg" alt=""/></li>
+        <li class="li_list"><img src="p2.jpg" alt=""/></li>
+        <li class="li_list"><img src="p3.jpg" alt=""/></li>
+        <li class="li_list"><img src="p5.jpg" alt=""/></li>
+    </ul>
+</div>
+<div style=" margin-left: 100px">
+    <div class="div_btn"></div>
+    <div class="div_btn"></div>
+    <div class="div_btn"></div>
+    <div class="div_btn"></div>
+</div>
+<script>
+    //跑动的次数
+    var num = 0;
+    //动画的执行方向
+    var isgo = false;
+    //定义计时器对象
+    var timer;
+    window.onload = function () {
+        /*获取ul元素*/
+        var ul_info = document.getElementsByClassName("ul_list")[0];
+        //获取所有的li元素
+        var li_info = document.getElementsByClassName("li_list");
+        //获取span对象
+        var span_txt = document.getElementsByClassName("span_txt");
+        //获取所有点的对象
+        var div_btn = document.getElementsByClassName("div_btn");
+        div_btn[0].style.backgroundColor = "red";
+        /*定义计时器  控制ul移动*/
+        showtime();
+        function showtime() {
+            timer = setInterval(function () {
+                if (isgo == false) {
+                    num++;
+                    ul_info.style.transform = "translate(" + -500 * num + "px)";
+                    if (num >= li_info.length - 1) {
+                        num = li_info.length - 1;
+                        isgo = true;
+                    }
+                }
+                else {
+                    num--;
+                    ul_info.style.transform = "translate(" + -500 * num + "px)";
+                    if (num <= 0) {
+                        num = 0;
+                        isgo = false;
+                    }
+                }
+                for (var a = 0; a < div_btn.length; a++) {
+                    div_btn[a].style.backgroundColor = "silver";
+                }
+                div_btn[num].style.backgroundColor = "red";
+            }, 1000);
+        }
+
+        //鼠标进入span操作
+        for (var i = 0; i < span_txt.length; i++) {
+            //鼠标悬停
+            span_txt[i].onmouseover = function () {
+                //停止计时器
+                clearInterval(timer);
+            }
+            //鼠标离开
+            span_txt[i].onmouseout = function () {
+                //添加计时器
+                showtime();
+            }
+            span_txt[i].onclick = function () {
+                //区分左右
+                if (this.title == 0) {
+                    num++
+                    if (num > 3) {
+                        num = 0;
+                    }
+                }
+                else {
+                    num--;
+                    if (num < 0) {
+                        num = 3
+                    }
+                }
+                for (var a = 0; a < div_btn.length; a++) {
+                    div_btn[a].style.backgroundColor = "silver";
+                }
+                div_btn[num].style.backgroundColor = "red";
+                ul_info.style.transform = "translate(" + -500 * num + "px)";
+            }
+        }
+        //鼠标悬停div  显示
+        for (var b = 0; b < div_btn.length; b++) {
+            div_btn[b].index = b;
+            div_btn[b].onmouseover = function () {
+                //停止计时器
+                clearInterval(timer);
+                for (var a = 0; a < div_btn.length; a++) {
+                    div_btn[a].style.backgroundColor = "silver";
+                }
+                div_btn[this.index].style.backgroundColor = "red";
+                //让num值对应
+                //只是为了控制方向
+                if (this.index == 3) {
+                    isgo = true;
+                }
+                if (this.index == 0) {
+                    isgo = false;
+                }
+                num = this.index;
+                ul_info.style.transform = "translate(" + -500 * this.index + "px)";
+            }
+            div_btn[b].onmouseout = function () {
+                //添加计时器
+                showtime();
+            }
+        }
+    }
+</script>
+</body>
+</html>

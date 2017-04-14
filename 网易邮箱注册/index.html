@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>网易邮箱注册</title>
+    <link rel="stylesheet" href="css/index.css"/>
+
+</head>
+<body>
+<form action="subpage.html">
+    <div class="div_bg">
+        <ul id="ul_main">
+            <li><span class="li_span"><span class="sign">*</span>手机号码</span><input  id="phone_number" type="text"/><span id="com">@163.com</span>
+                <div class="reminder">
+                    请填写手机号
+                </div>
+            </li>
+            <li><span class="li_span"><span class="sign">*</span>图片验证码</span><input id="ver_code" type="text"/>
+                <div class="div_1">
+                </div>
+                <div class="exchange">
+                    <span id="span_text">看不清楚？换张图片</span>
+                </div>
+                <div class="reminder" style="margin-top: 20px">
+                    请填写图片中的字符，不区分大小写
+                </div>
+            </li>
+            <li><span class="li_span"><span class="sign">*</span>短信验证码</span><input id="note" type="text"/>
+                <div class="reminder">
+                    请查收手机短信，并填写短信中的6位验证码
+                </div>
+            </li>
+            <li><span class="li_span"><span class="sign">*</span>密码</span><input id="cipher" type="password"/>
+                <div class="reminder">
+                    6~16个字符，区分大小写
+                </div>
+            </li>
+            <li><span class="li_span"><span class="sign">*</span>确认密码</span><input  id="cipher_next" type="password"/>
+                <div class="reminder">
+                    请再次填写密码
+                </div>
+            </li>
+            <li style="margin-top: 10px"><div id="hint"><input  id="check" type="checkbox" /><span>同意“服务条款”和“用户须知”、“隐私相关政策”</span></div>
+                <input id="btn" type="submit" value="立即注册"/>
+            </li>
+        </ul>
+    </div>
+</form>
+<script src="js/addLoadEvent.js"></script>
+<script src="js/showNumber.js"></script>
+</body>
+</html>

@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body {
+            background-image: url("1.JPG");
+            background-repeat: no-repeat;
+            background-size: 100% 120%;
+        }
+
+        .big_div {
+            width: 160px;
+            height: 160px;
+            border: 1px solid gold;
+            box-shadow: 3px 3px 10px orange, -3px -3px 10px orange, 1px 1px 70px red, -1px -1px 70px red;
+            border-radius: 100%;
+            position: absolute;
+        }
+
+        .big_div:nth-child(2) {
+            transform: rotatey(30deg);
+        }
+
+        .big_div:nth-child(3) {
+            transform: rotatey(60deg);
+        }
+
+        .big_div:nth-child(4) {
+            transform: rotatey(90deg);
+        }
+
+        .big_div:nth-child(5) {
+            transform: rotatey(120deg);
+        }
+
+        .big_div:nth-child(6) {
+            transform: rotatey(150deg);
+        }
+
+        .div_big:nth-child(1) {
+            width: 160px;
+            height: 160px;
+            position: absolute;
+            transform-style: preserve-3d;
+            animation: changinfo 5s linear infinite;
+        }
+
+        @keyframes changinfo {
+            from {
+                transform: rotatez(0deg)
+            }
+            to {
+                transform: rotatez(360deg)
+            }
+        }
+
+        .div_rotate {
+            width: 160px;
+            height: 160px;
+            position: absolute;
+            transform-style: preserve-3d;
+            transform: rotatez(90deg);
+        }
+
+        .bg-bg {
+            width: 160px;
+            height: 160px;
+            position: relative;
+            margin-left: 220px;
+            margin-top: 220px;
+
+        }
+
+        .guidao {
+            width: 600px;
+            height: 600px;
+            position: absolute;
+            border: 2px dashed white;
+            border-radius: 100%;
+            margin-top: 98px;
+            margin-left: 98px;
+            transform-style: preserve-3d;
+            animation: changinfo1 50s linear infinite;
+        }
+
+        @keyframes changinfo1 {
+            from {
+                transform: rotatez(0deg)
+            }
+            to {
+                transform: rotatez(360deg)
+            }
+        }
+
+        .div_an {
+            width: 900px;
+            height: 900px;
+            transform-style: preserve-3d;
+            transform: rotatex(70deg) rotatey(25deg);
+            transition: all 2s;
+            margin-left:200px;
+            margin-top: -200px;
+        }
+
+        .big_div1 {
+            width: 80px;
+            height: 80px;
+            border: 1px solid darkturquoise;
+            box-shadow: 3px 3px 10px rgba(48, 116, 223, 0.45), -3px -3px 10px rgba(48, 116, 223, 0.45), 1px 1px 40px rgba(68, 230, 255, 0.48), -1px -1px 40px rgba(68, 230, 255, 0.48);
+            border-radius: 100%;
+            position: absolute;
+        }
+        .big_div1:nth-child(2) {
+            transform: rotatey(30deg);
+        }
+
+        .big_div1:nth-child(3) {
+            transform: rotatey(60deg);
+        }
+
+        .big_div1:nth-child(4) {
+            transform: rotatey(90deg);
+        }
+
+        .big_div1:nth-child(5) {
+            transform: rotatey(120deg);
+        }
+
+        .big_div1:nth-child(6) {
+            transform: rotatey(150deg);
+        }
+
+        .div_big1:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            position: absolute;
+            transform-style: preserve-3d;
+            animation: changinfo 5s linear infinite;
+        }
+
+        @keyframes changinfo {
+            from {
+                transform: rotatez(0deg)
+            }
+            to {
+                transform: rotatez(360deg)
+            }
+        }
+
+        .div_rotate1 {
+            width: 80px;
+            height: 80px;
+            position: absolute;
+            transform-style: preserve-3d;
+            transform: rotatez(90deg);
+        }
+
+        .bg-bg1 {
+            width: 80px;
+            height: 80px;
+            position: absolute;
+
+        }
+
+        .guidao1 {
+            width: 800px;
+            height: 800px;
+            border: 2px dashed white;
+            border-radius: 100%;
+            position: absolute;
+            margin-left: 100px;
+            margin-top: 100px;
+            transform-style: preserve-3d;
+            animation: changinfo1 80s linear infinite;
+        }
+
+        .big_div2 {
+            width: 80px;
+            height: 80px;
+            border: 1px solid greenyellow;
+            box-shadow: 3px 3px 10px rgba(217, 83, 223, 0.45), -3px -3px 10px rgba(217, 83, 223, 0.45), 1px 1px 40px rgba(98, 255, 180, 0.48), -1px -1px 40px rgba(98, 255, 180, 0.48);
+            border-radius: 100%;
+            position: absolute;
+        }
+
+        .big_div2:nth-child(2) {
+            transform: rotatey(30deg);
+        }
+
+        .big_div2:nth-child(3) {
+            transform: rotatey(60deg);
+        }
+
+        .big_div2:nth-child(4) {
+            transform: rotatey(90deg);
+        }
+
+        .big_div2:nth-child(5) {
+            transform: rotatey(120deg);
+        }
+
+        .big_div2:nth-child(6) {
+            transform: rotatey(150deg);
+        }
+
+        .div_big2:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            position: absolute;
+            transform-style: preserve-3d;
+            animation: changinfo 5s linear infinite;
+        }
+
+        @keyframes changinfo {
+            from {
+                transform: rotatez(0deg)
+            }
+            to {
+                transform: rotatez(360deg)
+            }
+        }
+
+        .div_rotate2 {
+            width: 80px;
+            height: 80px;
+            position: absolute;
+            transform-style: preserve-3d;
+            transform: rotatez(90deg);
+        }
+
+        .bg-bg2 {
+            width: 80px;
+            height: 80px;
+            position: absolute;
+            margin-top: 130px;
+            margin-left: 30px;
+        }
+
+        .guidao2 {
+            width: 1000px;
+            height: 1000px;
+            border: 2px dashed white;
+            border-radius: 100%;
+            position: absolute;
+            margin-left: 100px;
+            margin-top: 100px;
+            transform-style: preserve-3d;
+            animation: changinfo1 80s linear infinite;
+        }
+
+        .big_div3 {
+            width: 80px;
+            height: 80px;
+            border: 1px solid #ffd47b;
+            box-shadow: 3px 3px 10px rgba(223, 161, 104, 0.45), -3px -3px 10px rgba(223, 161, 104, 0.45), 1px 1px 40px rgba(255, 211, 78, 0.48), -1px -1px 40px rgba(255, 211, 78, 0.48);
+            border-radius: 100%;
+            position: absolute;
+        }
+
+        .big_div3:nth-child(2) {
+            transform: rotatey(30deg);
+        }
+
+        .big_div3:nth-child(3) {
+            transform: rotatey(60deg);
+        }
+
+        .big_div3:nth-child(4) {
+            transform: rotatey(90deg);
+        }
+
+        .big_div3:nth-child(5) {
+            transform: rotatey(120deg);
+        }
+
+        .big_div3:nth-child(6) {
+            transform: rotatey(150deg);
+        }
+
+        .div_big3:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            position: absolute;
+            transform-style: preserve-3d;
+            animation: changinfo 5s linear infinite;
+        }
+
+        @keyframes changinfo {
+            from {
+                transform: rotatez(0deg)
+            }
+            to {
+                transform: rotatez(360deg)
+            }
+        }
+
+        .div_rotate3 {
+            width: 80px;
+            height: 80px;
+            position: absolute;
+            transform-style: preserve-3d;
+            transform: rotatez(90deg);
+        }
+
+        .bg-bg3 {
+            width: 80px;
+            height: 80px;
+            position: absolute;
+            margin-top: 150px;
+            margin-left: 60px;
+        }
+
+        .guidao3 {
+            width: 1200px;
+            height: 1200px;
+            border: 2px dashed white;
+            border-radius: 100%;
+            position: absolute;
+            margin-top: 100px;
+            margin-left: 100px;
+            transform-style: preserve-3d;
+            animation: changinfo1 80s linear infinite;
+        }
+
+        .big_div4 {
+            width: 80px;
+            height: 80px;
+            border: 1px solid palevioletred;
+            box-shadow: 3px 3px 10px rgba(79, 223, 79, 0.45), -3px -3px 10px rgba(70, 223, 94, 0.45), 1px 1px 40px rgba(123, 117, 255, 0.48), -1px -1px 40px rgba(169, 123, 255, 0.48);
+            border-radius: 100%;
+            position: absolute;
+        }
+
+        .big_div4:nth-child(2) {
+            transform: rotatey(30deg);
+        }
+
+        .big_div4:nth-child(3) {
+            transform: rotatey(60deg);
+        }
+
+        .big_div4:nth-child(4) {
+            transform: rotatey(90deg);
+        }
+
+        .big_div4:nth-child(5) {
+            transform: rotatey(120deg);
+        }
+
+        .big_div4:nth-child(6) {
+            transform: rotatey(150deg);
+        }
+
+        .div_big4:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            position: absolute;
+            transform-style: preserve-3d;
+            animation: changinfo 5s linear infinite;
+        }
+
+        @keyframes changinfo {
+            from {
+                transform: rotatez(0deg)
+            }
+            to {
+                transform: rotatez(360deg)
+            }
+        }
+
+        .div_rotate4 {
+            width: 80px;
+            height: 80px;
+            position: absolute;
+            transform-style: preserve-3d;
+            transform: rotatez(90deg);
+        }
+
+        .bg-bg4 {
+            width: 80px;
+            height: 80px;
+            position: absolute;
+            margin-top: 180px;
+            margin-left: 90px;
+        }
+
+        .guidao4 {
+            width: 1400px;
+            height: 1400px;
+            border: 2px dashed white;
+            border-radius: 100%;
+            position: absolute;
+            transform-style: preserve-3d;
+            animation: changinfo1 80s linear infinite;
+        }
+
+        .big_div5 {
+            width: 80px;
+            height: 80px;
+            border: 1px solid #dbd6c6;
+            box-shadow: 3px 3px 10px rgba(220, 223, 221, 0.45), -3px -3px 10px rgba(212, 223, 190, 0.45), 1px 1px 40px rgba(186, 238, 255, 0.48), -1px -1px 40px rgba(255, 196, 172, 0.48);
+            border-radius: 100%;
+            position: absolute;
+        }
+
+        .big_div5:nth-child(2) {
+            transform: rotatey(30deg);
+        }
+
+        .big_div5:nth-child(3) {
+            transform: rotatey(60deg);
+        }
+
+        .big_div4:nth-child(4) {
+            transform: rotatey(90deg);
+        }
+
+        .big_div5:nth-child(5) {
+            transform: rotatey(120deg);
+        }
+
+        .big_div5:nth-child(6) {
+            transform: rotatey(150deg);
+        }
+
+        .div_big5:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            position: absolute;
+            transform-style: preserve-3d;
+            animation: changinfo 5s linear infinite;
+        }
+
+        @keyframes changinfo {
+            from {
+                transform: rotatez(0deg)
+            }
+            to {
+                transform: rotatez(360deg)
+            }
+        }
+
+        .div_rotate5 {
+            width: 80px;
+            height: 80px;
+            position: absolute;
+            transform-style: preserve-3d;
+            transform: rotatez(90deg);
+        }
+
+        .bg-bg5 {
+            width: 80px;
+            height: 80px;
+            position: absolute;
+            margin-top: 210px;
+            margin-left: 120px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="div_an">
+    <div class="guidao4">
+        <div class="guidao3">
+            <div class="guidao2">
+                <div class="guidao1">
+                    <div class="guidao">
+
+                        <div class="bg-bg">
+                            <div class="div_big">
+                                <div class="big_div"></div>
+                                <div class="big_div"></div>
+                                <div class="big_div"></div>
+                                <div class="big_div"></div>
+                                <div class="big_div"></div>
+                                <div class="big_div"></div>
+                            </div>
+                            <div class="div_rotate">
+                                <div class="div_big">
+                                    <div class="big_div"></div>
+                                    <div class="big_div"></div>
+                                    <div class="big_div"></div>
+                                    <div class="big_div"></div>
+                                    <div class="big_div"></div>
+                                    <div class="big_div"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="guidaoyue">
+                            <div class="bg-bg1">
+                                <div class="div_big1">
+                                    <div class="big_div1"></div>
+                                    <div class="big_div1"></div>
+                                    <div class="big_div1"></div>
+                                    <div class="big_div1"></div>
+                                    <div class="big_div1"></div>
+                                    <div class="big_div1"></div>
+                                </div>
+                                <div class="div_rotate1">
+                                    <div class="div_big1">
+                                        <div class="big_div1"></div>
+                                        <div class="big_div1"></div>
+                                        <div class="big_div1"></div>
+                                        <div class="big_div1"></div>
+                                        <div class="big_div1"></div>
+                                        <div class="big_div1"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-bg2">
+                        <div class="div_big2">
+                            <div class="big_div2"></div>
+                            <div class="big_div2"></div>
+                            <div class="big_div2"></div>
+                            <div class="big_div2"></div>
+                            <div class="big_div2"></div>
+                            <div class="big_div2"></div>
+                        </div>
+                        <div class="div_rotate2">
+                            <div class="div_big2">
+                                <div class="big_div2"></div>
+                                <div class="big_div2"></div>
+                                <div class="big_div2"></div>
+                                <div class="big_div2"></div>
+                                <div class="big_div2"></div>
+                                <div class="big_div2"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-bg3">
+                    <div class="div_big3">
+                        <div class="big_div3"></div>
+                        <div class="big_div3"></div>
+                        <div class="big_div3"></div>
+                        <div class="big_div3"></div>
+                        <div class="big_div3"></div>
+                        <div class="big_div3"></div>
+                    </div>
+                    <div class="div_rotate3">
+                        <div class="div_big3">
+                            <div class="big_div3"></div>
+                            <div class="big_div3"></div>
+                            <div class="big_div3"></div>
+                            <div class="big_div3"></div>
+                            <div class="big_div3"></div>
+                            <div class="big_div3"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-bg4">
+                <div class="div_big4">
+                    <div class="big_div4"></div>
+                    <div class="big_div4"></div>
+                    <div class="big_div4"></div>
+                    <div class="big_div4"></div>
+                    <div class="big_div4"></div>
+                    <div class="big_div4"></div>
+                </div>
+                <div class="div_rotate4">
+                    <div class="div_big4">
+                        <div class="big_div4"></div>
+                        <div class="big_div4"></div>
+                        <div class="big_div4"></div>
+                        <div class="big_div4"></div>
+                        <div class="big_div4"></div>
+                        <div class="big_div4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-bg5">
+            <div class="div_big5">
+                <div class="big_div5"></div>
+                <div class="big_div5"></div>
+                <div class="big_div5"></div>
+                <div class="big_div5"></div>
+                <div class="big_div5"></div>
+                <div class="big_div5"></div>
+            </div>
+            <div class="div_rotate5">
+                <div class="div_big5">
+                    <div class="big_div5"></div>
+                    <div class="big_div5"></div>
+                    <div class="big_div5"></div>
+                    <div class="big_div5"></div>
+                    <div class="big_div5"></div>
+                    <div class="big_div5"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    /* var div_mou = document.getElementsByClassName("div_an")[0];
+     setInterval(function () {
+     var x = parseInt(Math.random() * 360);
+     var y = parseInt(Math.random() * 360);
+     var z = parseInt(Math.random() * 360);
+     div_mou.style.transform = "rotatex(" + x + "deg) rotatey(" + y + "deg)  rotatez(" + z + "deg)";
+     }, 2000)*/
+</script>
+</body>
+</html>

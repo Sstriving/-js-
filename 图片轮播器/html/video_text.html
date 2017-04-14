@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .video_txt {
+            width: 500px;
+            height: 400px;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+<!--视频播放器-->
+<video class="video_txt" src="video/map4video.mp4" controls></video>
+<div>
+    <input type="button" class="btn" value="播放/暂停"/>
+    <input type="button" class="btn_tui" value="快退"/>
+    <input type="button" class="kuai" value="快进*1"/>
+    <input type="button" class="btn_j" value="静音"/>
+    <input type="button" class="btn_jiahuojian" value="-"/>
+    <progress class="pro_txt" value="0" max="100"></progress>
+    <input class="btn_jiahuojian" type="button" value="+"/>
+    <input type="button" class="big_btn" value="全屏"/>
+</div>
+<script>
+    var isclick = false;
+    //定义计时器对象
+    var timer;
+    window.onload = function () {
+        //获取视频对象
+        var video = document.getElementsByClassName("video_txt")[0];
+        //找到播放按钮
+        var btn_b = document.getElementsByClassName("btn")[0];
+        //获取快进按钮对象
+        var btn_k = document.getElementsByClassName("kuai")[0];
+        //获取快退按钮
+        var btn_t = document.getElementsByClassName("btn_tui")[0];
+        //获取静音按钮
+        var btn_jing = document.getElementsByClassName("btn_j")[0];
+        //获取加减号
+        var btn_list = document.getElementsByClassName("btn_jiahuojian");
+        //获取进度
+        var txt_pro = document.getElementsByClassName("pro_txt")[0];
+        txt_pro.value = video.volume * 100;
+        //全屏按钮
+        var btn_big = document.getElementsByClassName("big_btn")[0];
+        btn_b.onclick = function () {
+            if (isclick == false) {
+                /*视频播放*/
+                video.play();
+                isclick = true;
+            }
+            else {
+                /*暂停*/
+                video.pause();
+                isclick = false;
+            }
+        }
+        //快进功能
+        btn_k.onclick = function () {
+            //先获取播放的默认速度   playbackRate  视频的播放速度
+            var speed = video.playbackRate;
+            speed++;
+            /*判断当前的速度*/
+            if (speed >= 4) {
+                speed = 1;
+            }
+            video.playbackRate = speed;
+            //点击完成之后按钮的文本变化为快进*n
+            this.value = "快进*" + speed;
+        }
+        //快退的点击事件
+        var speed = 0;
+        btn_t.onclick = function () {
+            //点击进来之后直接先清除计时器  防止计时器的累计
+            clearInterval(timer);
+            speed++;
+            this.value = "快退*" + speed;
+            if (speed >= 4) {
+                speed = 0;
+                this.value = "快退";
+                //当快退速度为0时  播放视频  关闭计时器
+                video.play();
+                //往下代码 不需执行  直接跳出
+                return;
+            }
+            video.pause();
+            //点击后自动倒退
+            //先获取视频播放的时间
+            //随时变更之后的时间
+            var time = video.currentTime;
+            timer = setInterval(function () {
+                time -= speed;
+                video.currentTime = time;
+
+            }, 1000);
+
+        }
+        //静音效果
+        var isclick_ying = false;
+        btn_jing.onclick = function () {
+            if (isclick_ying == false) {
+                video.muted = true;
+                isclick_ying = true;
+            }
+            else {
+                video.muted = false;
+                isclick_ying = false;
+            }
+        }
+
+        /*控制音量*/
+        for (var i = 0; i < btn_list.length; i++) {
+            btn_list[i].onclick = function () {
+                /*判断按钮*/
+                var txt = txt_pro.value;
+                if (this.value == "-") {
+                    txt -= 10;
+                }
+                else {
+                    txt += 10;
+                }
+                /*进度条的值*/
+                txt_pro.value = txt;
+                //视频的声音条
+                video.volume = txt / 100;
+            }
+        }
+        //全屏按钮的事件
+        btn_big.onclick = function () {
+            /*需要考虑浏览器的兼容*/
+            /*w3c*/
+            if (video.RequestFullscreen) {
+                /*标准的*/
+                video.RequestFullscreen();
+            }
+            else if (video.mozRequestFullscreen) {
+                /*火狐的*/
+                video.mozRequestFullscreen();
+            }
+            else if (video.webkitRequestFullscreen) {
+                /* 谷歌*/
+                video.webkitRequestFullscreen();
+            }
+            else if (video.msRequestFullscreen) {
+                /*IE11*/
+                video.msRequestFullscreen();
+            }
+        }
+
+        /* btn_big.onclick = function () {
+         if (video.RequestFullscreen) {
+         video.RequestFullscreen();
+         }
+         else if (video.mozRequestFullscreen) {
+         video.mozRequestFullscreen();
+         }
+         else if (video.webkitRequestFullscreen) {
+         video.webkitRequestFullscreen();
+         }
+         else if (elem.msRequestFullscreen) {
+
+         elem.msRequestFullscreen();
+
+         }
+         }*/
+    }
+</script>
+</body>
+</html>

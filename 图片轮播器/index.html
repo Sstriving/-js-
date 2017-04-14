@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>图片轮播器</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .li_list {
+            list-style: none;
+            width: 500px;
+            height: 300px;
+            float: left;
+
+        }
+
+        .li_list img {
+            width: 100%;
+            height: 100%;
+
+        }
+
+        .div_list {
+            width: 500px;
+            height: 300px;
+            /*border: 1px solid red;*/
+            overflow: hidden;
+        }
+
+        .ul_list {
+            width: 2000px;
+            height: 300px;
+            transition: all, 0.5s;
+        }
+
+        .div_txt {
+            position: absolute;
+            z-index: 999999;
+            font-size: 4em;
+            margin-top: 100px;
+            width: 500px;
+        }
+
+        .div_txt span:hover {
+            cursor: pointer;
+            background-color: rgba(192, 192, 192, 0.54);
+        }
+        .div_last{
+            width: 500px;
+            margin-left: 85px;
+
+        }
+        .div_foot{
+            width: 50px;
+            height: 15px;
+            border-radius: 25%;
+            background-color: silver;
+            margin-left: 20px;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+<div class="div_list">
+    <div class="div_txt">
+        <span class="span_txt"><</span>
+        <span class="span_txt" style="float: right">></span>
+    </div>
+    <ul class="ul_list">
+        <li class="li_list"><img src="image/p1.jpg" alt="pic1"/></li>
+        <li class="li_list"><img src="image/p2.jpg" alt="pic2"/></li>
+        <li class="li_list"><img src="image/p3.jpg" alt="pic3"/></li>
+        <li class="li_list"><img src="image/p5.jpg" alt="pic4"/></li>
+    </ul>
+</div>
+<div class="div_last">
+    <div class="div_foot"></div>
+    <div class="div_foot"></div>
+    <div class="div_foot"></div>
+    <div class="div_foot"></div>
+</div>
+<script>
+    var num = 0;
+    var isgo = false;
+    var timer;
+    window.onload = function () {
+        var ul_list = document.getElementsByClassName("ul_list")[0];
+        var li_list = document.getElementsByClassName("li_list");
+        var span_txt = document.getElementsByClassName("span_txt");
+        var div_foot =document.getElementsByClassName("div_foot");
+        div_foot[0].style.backgroundColor ="red";
+        showpic();
+        //自动走
+        function showpic() {
+            timer = setInterval(function () {
+                if (isgo == false) {
+                    num++;
+                    if (num >= li_list.length - 1) {
+                        num = 3;
+                        isgo = true;
+                    }
+                }
+                else {
+                    num--;
+                    if (num <= 0) {
+                        num = 0;
+                        isgo = false;
+                    }
+                }
+                //让图片跑
+                ul_list.style.transform = "translate(" + -500 * num + "px)";
+                //加颜色
+                for(var j =0;j<4;j++){
+                    div_foot[j].style.backgroundColor ="silver";
+                }
+                div_foot[num].style.backgroundColor ="red";
+            }, 1000);
+        }
+//点击走
+        for (var i = 0; i < span_txt.length; i++) {
+            //进入事件
+            span_txt[i].onmouseover = function () {
+                clearInterval(timer);
+            };
+            span_txt[i].onmouseout = function () {
+                showpic();
+            };
+            //点击事件
+            span_txt[i].index = i;
+            span_txt[i].onclick = function () {
+                if (this.index == 0) {
+                    num++;
+                    if (num >3) {
+                        num = 0;
+                    }
+                }
+                else {
+                    num--;
+                    if(num<0){
+                        num = 3;
+                    }
+                }
+                for(var j =0;j<4;j++){
+                    div_foot[j].style.backgroundColor ="silver";
+                }
+                div_foot[num].style.backgroundColor ="red";
+                ul_list.style.transform = "translate(" + -500 * num + "px)";
+            }
+        }
+    }
+</script>
+</body>
+</html>
